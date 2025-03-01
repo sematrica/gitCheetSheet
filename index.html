@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Git Cheat Sheet</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.5;
+        }
+
+        h1 {
+            color: #E94F37; /* Red-Orange */
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            color: #007ACC; /* Blue */
+            margin-top: 2em;
+            margin-bottom: 0.5em;
+        }
+        h3 {
+            color: #005f5f; /* Dark teal for subcategories */
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .command-block {
+            margin-bottom: 1.5em;
+        }
+        .command-title {
+            font-weight: bold;
+            color: #BD2C00; /* Darker orange */
+        }
+        .command-description {
+            margin-bottom: 0.5em;
+        }
+        .code-box {
+            background-color: #1e1e1e;
+            color: #fafafa;
+            padding: 0.75em;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .code-box::-webkit-scrollbar {
+            height: 6px;
+        }
+        .code-box::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<h1>Git Themed Cheat Sheet</h1>
+<p>This page displays <strong>all</strong> Git commands, categorized, with brief descriptions and example usage. Each example is in a black box (just like in a terminal) and can be copied directly.</p>
+
+<!-- ====================== Main Porcelain Commands ====================== -->
+<h2>Main Porcelain Commands</h2>
+
+<div class="command-block">
+    <div class="command-title">git add</div>
+    <div class="command-description">Add file contents to the index (staging area).</div>
+    <div class="code-box">git add [file1] [file2]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git am</div>
+    <div class="command-description">Apply a series of patches from a mailbox.</div>
+    <div class="code-box">git am < mailbox.patch</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git archive</div>
+    <div class="command-description">Create an archive of files from a named tree.</div>
+    <div class="code-box">git archive --format=tar HEAD > source.tar</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git bisect</div>
+    <div class="command-description">Use binary search to find the commit that introduced a bug.</div>
+    <div class="code-box">
+        git bisect start
+        git bisect bad
+        git bisect good v2.0
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git branch</div>
+    <div class="command-description">List, create, or delete branches.</div>
+    <div class="code-box">
+        git branch          # List local branches
+        git branch new-branch
+        git branch -d old-branch
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git bundle</div>
+    <div class="command-description">Move objects and refs by archive.</div>
+    <div class="code-box">
+        git bundle create repo.bundle HEAD master
+        git bundle verify repo.bundle
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git checkout</div>
+    <div class="command-description">Switch branches or restore working tree files.</div>
+    <div class="code-box">
+        git checkout main
+        git checkout -- [file]
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git cherry-pick</div>
+    <div class="command-description">Apply changes introduced by existing commits.</div>
+    <div class="code-box">git cherry-pick [commit-hash]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git citool</div>
+    <div class="command-description">Graphical alternative to git commit.</div>
+    <div class="code-box">git citool</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git clean</div>
+    <div class="command-description">Remove untracked files from the working tree.</div>
+    <div class="code-box">git clean -fd</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git clone</div>
+    <div class="command-description">Clone a repository into a new directory.</div>
+    <div class="code-box">git clone [url] [directory]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git commit</div>
+    <div class="command-description">Record changes to the repository.</div>
+    <div class="code-box">
+        git commit -m "Commit message"
+        git commit --amend
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git describe</div>
+    <div class="command-description">Give an object a human-readable name based on an available ref.</div>
+    <div class="code-box">git describe --tags</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git diff</div>
+    <div class="command-description">Show changes between commits, commit and working tree, etc.</div>
+    <div class="code-box">
+        git diff
+        git diff HEAD~1 HEAD
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git fetch</div>
+    <div class="command-description">Download objects and refs from another repository.</div>
+    <div class="code-box">git fetch [remote]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git format-patch</div>
+    <div class="command-description">Prepare patches for email submission.</div>
+    <div class="code-box">git format-patch -n [base_commit]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git gc</div>
+    <div class="command-description">Cleanup unnecessary files and optimize the local repository.</div>
+    <div class="code-box">git gc --prune=now --aggressive</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git gitk</div>
+    <div class="command-description">Launch the Git repository browser (graphical).</div>
+    <div class="code-box">gitk</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git grep</div>
+    <div class="command-description">Print lines matching a pattern.</div>
+    <div class="code-box">git grep "functionName"</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git gui</div>
+    <div class="command-description">A portable graphical interface to Git.</div>
+    <div class="code-box">git gui</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git init</div>
+    <div class="command-description">Create an empty Git repository or reinitialize an existing one.</div>
+    <div class="code-box">git init</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git log</div>
+    <div class="command-description">Show commit logs.</div>
+    <div class="code-box">
+        git log
+        git log --oneline --graph
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git maintenance</div>
+    <div class="command-description">Run tasks to optimize Git repository data.</div>
+    <div class="code-box">git maintenance run</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git merge</div>
+    <div class="command-description">Join two or more development histories together.</div>
+    <div class="code-box">git merge [branch]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git mv</div>
+    <div class="command-description">Move or rename a file, directory, or symlink.</div>
+    <div class="code-box">git mv old_filename new_filename</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git notes</div>
+    <div class="command-description">Add or inspect object notes.</div>
+    <div class="code-box">
+        git notes add -m "Note text" [commit]
+        git notes show [commit]
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git pull</div>
+    <div class="command-description">Fetch from and integrate with another repository or a local branch.</div>
+    <div class="code-box">git pull [remote] [branch]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git push</div>
+    <div class="command-description">Update remote refs along with associated objects.</div>
+    <div class="code-box">git push [remote] [branch]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git range-diff</div>
+    <div class="command-description">Compare two commit ranges (e.g. two versions of a branch).</div>
+    <div class="code-box">git range-diff upstream..topic upstream..topic-v2</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git rebase</div>
+    <div class="command-description">Reapply commits on top of another base tip.</div>
+    <div class="code-box">
+        git rebase main
+        git rebase -i HEAD~3
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git reset</div>
+    <div class="command-description">Reset current HEAD to the specified state.</div>
+    <div class="code-box">
+        git reset [commit]
+        git reset --hard HEAD~1
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git restore</div>
+    <div class="command-description">Restore working tree files.</div>
+    <div class="code-box">
+        git restore [file]
+        git restore --staged [file]
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git revert</div>
+    <div class="command-description">Revert some existing commits.</div>
+    <div class="code-box">git revert [commit]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git rm</div>
+    <div class="command-description">Remove files from the working tree and the index.</div>
+    <div class="code-box">git rm [file]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git scalar</div>
+    <div class="command-description">A tool for managing large Git repositories (incorporated in Git). </div>
+    <div class="code-box">git scalar register .</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git shortlog</div>
+    <div class="command-description">Summarize git log output.</div>
+    <div class="code-box">git shortlog -n -s</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git show</div>
+    <div class="command-description">Show various types of objects (commits, tags, etc.).</div>
+    <div class="code-box">git show [commit]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git sparse-checkout</div>
+    <div class="command-description">Reduce your working tree to a subset of tracked files.</div>
+    <div class="code-box">
+        git sparse-checkout init
+        git sparse-checkout set folder/subfolder
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git stash</div>
+    <div class="command-description">Stash the changes in a dirty working directory away.</div>
+    <div class="code-box">
+        git stash
+        git stash pop
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git status</div>
+    <div class="command-description">Show the working tree status.</div>
+    <div class="code-box">git status</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git submodule</div>
+    <div class="command-description">Initialize, update, or inspect submodules.</div>
+    <div class="code-box">
+        git submodule add [url]
+        git submodule update --init --recursive
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git switch</div>
+    <div class="command-description">Switch branches.</div>
+    <div class="code-box">git switch [branch]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git tag</div>
+    <div class="command-description">Create, list, delete or verify a tag object signed with GPG.</div>
+    <div class="code-box">
+        git tag v1.0
+        git tag -d v1.0
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git worktree</div>
+    <div class="command-description">Manage multiple working trees.</div>
+    <div class="code-box">
+        git worktree add ../path [branch]
+        git worktree remove ../path
+    </div>
+</div>
+
+<!-- ====================== Ancillary Commands / Manipulators ====================== -->
+<h2>Ancillary Commands / Manipulators</h2>
+
+<div class="command-block">
+    <div class="command-title">git config</div>
+    <div class="command-description">Get and set repository or global options.</div>
+    <div class="code-box">git config --global user.name "John Doe"</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git fast-export</div>
+    <div class="command-description">Git data exporter.</div>
+    <div class="code-box">git fast-export HEAD > repo.export</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git fast-import</div>
+    <div class="command-description">Backend for fast Git data importers.</div>
+    <div class="code-box">git fast-import < repo.export</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git filter-branch</div>
+    <div class="command-description">Rewrite branches (historical rewriting).</div>
+    <div class="code-box">
+        git filter-branch --tree-filter 'rm filename' HEAD
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git mergetool</div>
+    <div class="command-description">Run merge conflict resolution tools.</div>
+    <div class="code-box">git mergetool</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git pack-refs</div>
+    <div class="command-description">Pack heads and tags for efficient repository access.</div>
+    <div class="code-box">git pack-refs --all</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git prune</div>
+    <div class="command-description">Prune all unreachable objects from the object database.</div>
+    <div class="code-box">git prune</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git reflog</div>
+    <div class="command-description">Manage reflog information.</div>
+    <div class="code-box">git reflog</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git remote</div>
+    <div class="command-description">Manage set of tracked repositories.</div>
+    <div class="code-box">
+        git remote -v
+        git remote add origin [url]
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git repack</div>
+    <div class="command-description">Pack unpacked objects in a repository.</div>
+    <div class="code-box">git repack -ad</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git replace</div>
+    <div class="command-description">Create, list, or delete refs to replace objects.</div>
+    <div class="code-box">
+        git replace [object] [replacement]
+        git replace -l
+    </div>
+</div>
+
+<!-- ====================== Ancillary Commands / Interrogators ====================== -->
+<h2>Ancillary Commands / Interrogators</h2>
+
+<div class="command-block">
+    <div class="command-title">git annotate</div>
+    <div class="command-description">Annotate file lines with commit information.</div>
+    <div class="code-box">git annotate [file]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git blame</div>
+    <div class="command-description">Show what revision and author last modified each line.</div>
+    <div class="code-box">git blame [file]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git bugreport</div>
+    <div class="command-description">Collect information for filing a bug report.</div>
+    <div class="code-box">git bugreport</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git count-objects</div>
+    <div class="command-description">Count unpacked objects and their disk consumption.</div>
+    <div class="code-box">git count-objects -v</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git diagnose</div>
+    <div class="command-description">Generate a zip archive of diagnostic information.</div>
+    <div class="code-box">git diagnose</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git difftool</div>
+    <div class="command-description">Show changes using common diff tools.</div>
+    <div class="code-box">git difftool HEAD~1 HEAD</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git fsck</div>
+    <div class="command-description">Verify connectivity and validity of objects in the database.</div>
+    <div class="code-box">git fsck --full</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git gitweb</div>
+    <div class="command-description">Git web interface (web frontend to Git repositories).</div>
+    <div class="code-box">git instaweb --httpd=webrick</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git help</div>
+    <div class="command-description">Display help information about Git.</div>
+    <div class="code-box">git help [command]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git instaweb</div>
+    <div class="command-description">Instantly browse your working repo in gitweb.</div>
+    <div class="code-box">git instaweb --httpd=webrick</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git merge-tree</div>
+    <div class="command-description">Perform merge without touching index or working tree.</div>
+    <div class="code-box">git merge-tree [base] [head1] [head2]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git rerere</div>
+    <div class="command-description">Reuse recorded resolution of conflicted merges.</div>
+    <div class="code-box">git rerere</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git show-branch</div>
+    <div class="command-description">Show branches and their commits.</div>
+    <div class="code-box">git show-branch</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git verify-commit</div>
+    <div class="command-description">Check the GPG signature of commits.</div>
+    <div class="code-box">git verify-commit [commit]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git verify-tag</div>
+    <div class="command-description">Check the GPG signature of tags.</div>
+    <div class="code-box">git verify-tag [tag]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git version</div>
+    <div class="command-description">Display version information about Git.</div>
+    <div class="code-box">git version</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git whatchanged</div>
+    <div class="command-description">Show logs with differences each commit introduces.</div>
+    <div class="code-box">git whatchanged</div>
+</div>
+
+<!-- ====================== Interacting with Others ====================== -->
+<h2>Interacting with Others</h2>
+
+<div class="command-block">
+    <div class="command-title">git archimport</div>
+    <div class="command-description">Import a GNU Arch repository into Git.</div>
+    <div class="code-box">git archimport [archive]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git cvsexportcommit</div>
+    <div class="command-description">Export a single commit to a CVS checkout.</div>
+    <div class="code-box">git cvsexportcommit -c [commit]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git cvsimport</div>
+    <div class="command-description">Salvage your data out of a CVS repository.</div>
+    <div class="code-box">git cvsimport -d [cvsroot] [module]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git cvsserver</div>
+    <div class="command-description">A CVS server emulator for Git.</div>
+    <div class="code-box">git cvsserver</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git imap-send</div>
+    <div class="command-description">Send a collection of patches from stdin to an IMAP folder.</div>
+    <div class="code-box">git imap-send</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git p4</div>
+    <div class="command-description">Import from and submit to Perforce repositories.</div>
+    <div class="code-box">git p4 clone //depot/path</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git quiltimport</div>
+    <div class="command-description">Applies a quilt patchset onto the current branch.</div>
+    <div class="code-box">git quiltimport [patchdir]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git request-pull</div>
+    <div class="command-description">Generates a summary of pending changes.</div>
+    <div class="code-box">git request-pull [start] [url] [end]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git send-email</div>
+    <div class="command-description">Send a collection of patches as emails.</div>
+    <div class="code-box">git send-email *.patch</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git svn</div>
+    <div class="command-description">Bidirectional operation between Subversion and Git.</div>
+    <div class="code-box">git svn clone [svn-repo-url]</div>
+</div>
+
+<!-- ====================== Low-level Commands / Manipulators ====================== -->
+<h2>Low-level Commands / Manipulators</h2>
+
+<div class="command-block">
+    <div class="command-title">git apply</div>
+    <div class="command-description">Apply a patch to files and/or to the index.</div>
+    <div class="code-box">git apply [patchfile]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git checkout-index</div>
+    <div class="command-description">Copy files from the index to the working tree.</div>
+    <div class="code-box">git checkout-index [file]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git commit-graph</div>
+    <div class="command-description">Write and verify Git commit-graph files.</div>
+    <div class="code-box">git commit-graph write --reachable</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git commit-tree</div>
+    <div class="command-description">Create a new commit object.</div>
+    <div class="code-box">
+        git commit-tree [tree] -m "Message"
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git hash-object</div>
+    <div class="command-description">Compute object ID and optionally create a blob from a file.</div>
+    <div class="code-box">
+        git hash-object -w [file]
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git index-pack</div>
+    <div class="command-description">Build pack index file for an existing packed archive.</div>
+    <div class="code-box">
+        git index-pack [pack-file]
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git merge-file</div>
+    <div class="command-description">Run a three-way file merge.</div>
+    <div class="code-box">
+        git merge-file local.txt base.txt remote.txt
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git merge-index</div>
+    <div class="command-description">Run a merge for files needing merging.</div>
+    <div class="code-box">git merge-index git merge-one-file [files]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git mktag</div>
+    <div class="command-description">Create a tag object with extra validation.</div>
+    <div class="code-box">git mktag</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git mktree</div>
+    <div class="command-description">Build a tree object from ls-tree formatted text.</div>
+    <div class="code-box">git mktree</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git multi-pack-index</div>
+    <div class="command-description">Write and verify multi-pack-indexes.</div>
+    <div class="code-box">git multi-pack-index write</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git pack-objects</div>
+    <div class="command-description">Create a packed archive of objects.</div>
+    <div class="code-box">git pack-objects [pack-name]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git prune-packed</div>
+    <div class="command-description">Remove extra objects that are already in pack files.</div>
+    <div class="code-box">git prune-packed</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git read-tree</div>
+    <div class="command-description">Reads tree information into the index.</div>
+    <div class="code-box">git read-tree [tree-ish]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git symbolic-ref</div>
+    <div class="command-description">Read, modify, and delete symbolic refs.</div>
+    <div class="code-box">
+        git symbolic-ref HEAD refs/heads/newbranch
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git unpack-objects</div>
+    <div class="command-description">Unpack objects from a packed archive.</div>
+    <div class="code-box">git unpack-objects [pack-file]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git update-index</div>
+    <div class="command-description">Register file contents in the working tree to the index.</div>
+    <div class="code-box">git update-index --add [file]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git update-ref</div>
+    <div class="command-description">Update the object name stored in a ref safely.</div>
+    <div class="code-box">
+        git update-ref refs/heads/branch [commit]
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git write-tree</div>
+    <div class="command-description">Create a tree object from the current index.</div>
+    <div class="code-box">git write-tree</div>
+</div>
+
+<!-- ====================== Low-level Commands / Interrogators ====================== -->
+<h2>Low-level Commands / Interrogators</h2>
+
+<div class="command-block">
+    <div class="command-title">git cat-file</div>
+    <div class="command-description">Provide content or type and size info for repository objects.</div>
+    <div class="code-box">
+        git cat-file -p [object]
+    </div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git cherry</div>
+    <div class="command-description">Find commits yet to be applied to upstream.</div>
+    <div class="code-box">git cherry [upstream] [head]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git diff-files</div>
+    <div class="command-description">Compare files in the working tree and the index.</div>
+    <div class="code-box">git diff-files</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git diff-index</div>
+    <div class="command-description">Compare a tree to the working tree or index.</div>
+    <div class="code-box">git diff-index HEAD</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git diff-tree</div>
+    <div class="command-description">Compare content and mode of blobs found via two tree objects.</div>
+    <div class="code-box">git diff-tree HEAD~1 HEAD</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git for-each-ref</div>
+    <div class="command-description">Output information on each ref.</div>
+    <div class="code-box">git for-each-ref</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git for-each-repo</div>
+    <div class="command-description">Run a Git command on a list of repositories.</div>
+    <div class="code-box">git for-each-repo --config=repo.txt status</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git get-tar-commit-id</div>
+    <div class="command-description">Extract commit ID from an archive created using git archive.</div>
+    <div class="code-box">git get-tar-commit-id < archive.tar</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git ls-files</div>
+    <div class="command-description">Show information about files in the index and the working tree.</div>
+    <div class="code-box">git ls-files</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git ls-remote</div>
+    <div class="command-description">List references in a remote repository.</div>
+    <div class="code-box">git ls-remote [remote]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git ls-tree</div>
+    <div class="command-description">List the contents of a tree object.</div>
+    <div class="code-box">git ls-tree HEAD</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git merge-base</div>
+    <div class="command-description">Find as many good common ancestors as possible for a merge.</div>
+    <div class="code-box">git merge-base main feature</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git name-rev</div>
+    <div class="command-description">Find symbolic names for given revisions.</div>
+    <div class="code-box">git name-rev [commit]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git pack-redundant</div>
+    <div class="command-description">Find redundant pack files.</div>
+    <div class="code-box">git pack-redundant --all</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git rev-list</div>
+    <div class="command-description">Lists commit objects in reverse chronological order.</div>
+    <div class="code-box">git rev-list HEAD --</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git rev-parse</div>
+    <div class="command-description">Pick out and massage parameters.</div>
+    <div class="code-box">git rev-parse HEAD</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git show-index</div>
+    <div class="command-description">Show packed archive index.</div>
+    <div class="code-box">git show-index < packfile.idx</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git show-ref</div>
+    <div class="command-description">List references in a local repository.</div>
+    <div class="code-box">git show-ref</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git unpack-file</div>
+    <div class="command-description">Create a temporary file with a blob’s contents.</div>
+    <div class="code-box">git unpack-file [object]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git var</div>
+    <div class="command-description">Show a Git logical variable.</div>
+    <div class="code-box">git var GIT_AUTHOR_IDENT</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git verify-pack</div>
+    <div class="command-description">Validate packed Git archive files.</div>
+    <div class="code-box">git verify-pack packfile.idx</div>
+</div>
+
+<!-- ====================== Low-level Commands / Syncing Repositories ====================== -->
+<h2>Low-level Commands / Syncing Repositories</h2>
+
+<div class="command-block">
+    <div class="command-title">git daemon</div>
+    <div class="command-description">A simple server for Git repositories.</div>
+    <div class="code-box">git daemon --export-all --base-path=/srv/git</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git fetch-pack</div>
+    <div class="command-description">Receive missing objects from another repository.</div>
+    <div class="code-box">git fetch-pack [url] [ref]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git http-backend</div>
+    <div class="command-description">Server-side implementation of Git over HTTP.</div>
+    <div class="code-box">git http-backend</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git send-pack</div>
+    <div class="command-description">Push objects over Git protocol to another repository.</div>
+    <div class="code-box">git send-pack [url] [ref...]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git update-server-info</div>
+    <div class="command-description">Update auxiliary info file to help “dumb” servers.</div>
+    <div class="code-box">git update-server-info</div>
+</div>
+
+<!-- ====================== Low-level Commands / Internal Helpers ====================== -->
+<h2>Low-level Commands / Internal Helpers</h2>
+
+<div class="command-block">
+    <div class="command-title">git check-attr</div>
+    <div class="command-description">Display gitattributes information.</div>
+    <div class="code-box">git check-attr diff [file]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git check-ignore</div>
+    <div class="command-description">Debug gitignore / exclude files.</div>
+    <div class="code-box">git check-ignore -v [file]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git check-mailmap</div>
+    <div class="command-description">Show canonical names and email addresses of contacts.</div>
+    <div class="code-box">git check-mailmap [email]</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git check-ref-format</div>
+    <div class="command-description">Ensure that a reference name is well-formed.</div>
+    <div class="code-box">git check-ref-format refs/heads/my-branch</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git column</div>
+    <div class="command-description">Display data in columns.</div>
+    <div class="code-box">git branch | git column</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git credential</div>
+    <div class="command-description">Retrieve and store user credentials.</div>
+    <div class="code-box">git credential fill</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git credential-cache</div>
+    <div class="command-description">Helper to temporarily store passwords in memory.</div>
+    <div class="code-box">git credential-cache daemon</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git credential-store</div>
+    <div class="command-description">Helper to store credentials on disk.</div>
+    <div class="code-box">git credential-store --file ~/.git-credentials store</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git fmt-merge-msg</div>
+    <div class="command-description">Produce a merge commit message.</div>
+    <div class="code-box">git fmt-merge-msg --log</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git hook</div>
+    <div class="command-description">Run Git hooks (newer command in some versions of Git).</div>
+    <div class="code-box">git hook list</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git interpret-trailers</div>
+    <div class="command-description">Add or parse structured information in commit messages.</div>
+    <div class="code-box">git interpret-trailers --in-place --trailer "Signed-off-by: You"</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git mailinfo</div>
+    <div class="command-description">Extract patch and authorship from a single e-mail message.</div>
+    <div class="code-box">git mailinfo < email.txt</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git mailsplit</div>
+    <div class="command-description">Simple UNIX mbox splitter program.</div>
+    <div class="code-box">git mailsplit mbox</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git merge-one-file</div>
+    <div class="command-description">The standard helper program to use with git-merge-index.</div>
+    <div class="code-box">git merge-one-file base local remote</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git patch-id</div>
+    <div class="command-description">Compute unique ID for a patch.</div>
+    <div class="code-box">git patch-id < patchfile</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git sh-i18n</div>
+    <div class="command-description">Git's i18n setup code for shell scripts (internal).</div>
+    <div class="code-box"># Internal script, generally not invoked directly.</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git sh-setup</div>
+    <div class="command-description">Common Git shell script setup code (internal).</div>
+    <div class="code-box"># Internal script, generally not invoked directly.</div>
+</div>
+
+<div class="command-block">
+    <div class="command-title">git stripspace</div>
+    <div class="command-description">Remove unnecessary whitespace.</div>
+    <div class="code-box">git stripspace < file.txt</div>
+</div>
+
+<hr />
+
+<p><strong>Additionally</strong>, Git provides documentation “topics” (not commands) such as:</p>
+<ul>
+    <li><em>attributes, cli, hooks, ignore, mailmap, modules, repository-layout, revisions</em></li>
+    <li>Developer-facing file format and protocol docs like <em>format-bundle, format-chunk, format-pack, protocol-v2</em>, etc.</li>
+</ul>
+
+<p>These are reference documents rather than commands. Refer to <code>git help [topic]</code> for details.</p>
+
+<h3 style="color: #6f42c1;">Happy Coding!</h3>
+<p>This concludes the full list of Git commands and topics from <code>git help -a</code>, with short descriptions and usage examples.</p>
+</body>
+</html>
